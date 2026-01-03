@@ -52,168 +52,111 @@ import weakref
 import base64
 from cryptography.fernet import Fernet
 
-class RootEntity(abc.ABC):
-    @abc.abstractmethod
-    def access_layer(self): pass
+class _0x_SB_Root(abc.ABC):
+    @abc.abstractproperty
+    def _id(self): pass
 
-class LayerZero(RootEntity):
-    def access_layer(self): return self.__class__.__name__
+class _0x_SB_L0(_0x_SB_Root):
+    @property
+    def _id(self): return hashlib.md5(b'L0').hexdigest()
 
-class LayerOne(LayerZero):
-    def access_layer(self): return super().access_layer() + " -> " + self.__class__.__name__
+class _0x_SB_L1(_0x_SB_L0):
+    @property
+    def _id(self): return hashlib.md5(super()._id.encode()).hexdigest()
 
-class LayerTwo(LayerOne):
-    def access_layer(self): return super().access_layer() + " -> " + self.__class__.__name__
+class _0x_SB_L2(_0x_SB_L1):
+    @property
+    def _id(self): return hashlib.md5(super()._id.encode()).hexdigest()
 
-class LayerThree(LayerTwo):
-    def access_layer(self): return super().access_layer() + " -> " + self.__class__.__name__
+class _0x_SB_L3(_0x_SB_L2):
+    @property
+    def _id(self): return hashlib.md5(super()._id.encode()).hexdigest()
 
-class LayerFour(LayerThree):
-    def access_layer(self): return super().access_layer() + " -> " + self.__class__.__name__
+class _0x_SB_L4(_0x_SB_L3):
+    @property
+    def _id(self): return hashlib.md5(super()._id.encode()).hexdigest()
 
-class LayerFive(LayerFour):
-    def access_layer(self): return super().access_layer() + " -> " + self.__class__.__name__
+class _0x_SB_L5(_0x_SB_L4):
+    @property
+    def _id(self): return hashlib.md5(super()._id.encode()).hexdigest()
 
-class ProxyLogic:
-    def __init__(self, target):
-        self._target = target
-        self._depth = 0
-    def deep_wrap(self, val):
-        def level_1(v):
-            def level_2(v2):
-                def level_3(v3):
-                    def level_4(v4):
-                        def level_5(v5):
-                            return v5
-                        return level_5(v4)
-                    return level_4(v3)
-                return level_3(v2)
-            return level_2(v)
-        return level_1(val)
+def _0x_SB_ASSERT_SYSTEM(_val):
+    if not _val: raise RuntimeError("\x53\x42\x5f\x53\x59\x53\x54\x45\x4d\x5f\x43\x4f\x52\x52\x55\x50\x54\x49\x4f\x4e")
+    if 1 + 1 != 2: raise RuntimeError("\x53\x42\x5f\x50\x48\x59\x53\x49\x43\x53\x5f\x46\x41\x49\x4c\x55\x52\x45")
+    return True
 
-class DataCellFactory:
-    @staticmethod
-    def create_nested_provider(content):
-        class NestedProvider:
-            def __init__(self, data):
-                self.data = data
-                self.id = hashlib.sha256(str(data).encode()).hexdigest()
-            def get_data(self):
-                x = 0
-                for i in range(100): x += i
-                return self.data
-        return NestedProvider(content)
+class _0x_SB_Fragment_Provider:
+    def __init__(self, _seed):
+        self._s = _seed
+    def _get_v(self):
+        _0x_SB_ASSERT_SYSTEM(True)
+        return self._s
 
-def system_preflight_check():
-    for i in range(1, 21):
-        time.sleep(0.05)
-        progress = "=" * i + ">"
-        sys.stdout.write(f"\r[BOOT] Initializing Hardware Abstract Layer: [{progress.ljust(20)}] {i*5}%")
-        sys.stdout.flush()
-    sys.stdout.write("\n")
-    for i in range(1, 11):
-        time.sleep(0.03)
-        sys.stdout.write(f"[BOOT] Module {hex(id(i))} status: ONLINE\n")
-        sys.stdout.flush()
+def _0x_SB_INIT_LOG():
+    _log_ops = [
+        "\x4b\x45\x52\x4e\x45\x4c\x5f\x50\x52\x45\x5f\x50\x41\x47\x49\x4e\x47",
+        "\x42\x55\x46\x46\x45\x52\x5f\x41\x4c\x4c\x4f\x43\x41\x54\x49\x4f\x4e",
+        "\x56\x45\x43\x54\x4f\x52\x5f\x45\x4e\x47\x49\x4e\x45\x5f\x49\x4e\x49\x54",
+        "\x54\x45\x4e\x53\x4f\x52\x5f\x43\x4f\x52\x45\x5f\x4c\x4f\x41\x44",
+        "\x53\x42\x5f\x50\x52\x4f\x54\x4f\x43\x4f\x4c\x5f\x53\x48\x41\x4b\x45",
+        "\x45\x4e\x54\x52\x4f\x50\x59\x5f\x43\x4f\x4c\x4c\x45\x43\x54\x49\x4f\x4e",
+        "\x54\x48\x52\x45\x41\x44\x5f\x50\x4f\x4f\x4c\x5f\x53\x50\x41\x57\x4e",
+        "\x4d\x45\x54\x41\x44\x41\x54\x41\x5f\x43\x41\x43\x48\x49\x4e\x47"
+    ]
+    for _op in _log_ops:
+        for _p in range(4):
+            time.sleep(0.06)
+            sys.stdout.write(f"\r\033[94m[SB-SYSTEM] {_op} " + "." * (_p + 1) + " \033[0m")
+            sys.stdout.flush()
+        sys.stdout.write(f"\r\033[92m[SB-SYSTEM] {_op} [DONE]\033[0m\n")
 
-class VisualTerminalRenderer:
-    def __init__(self):
-        self.r = 91
-        self.g = 206
-        self.b = 250
-        self.p = f"\033[38;2;{self.r};{self.g};{self.b}m"
-        self.s = "\033[0m"
-    def render(self, blob):
-        res = ""
-        for char in blob:
-            res += f"{self.p}{char}{self.s}"
-        return res
-
-def baka_orchestrator_kernel():
-    system_preflight_check()
-    
-    p0 = DataCellFactory.create_nested_provider("5")
-    p1 = DataCellFactory.create_nested_provider("L")
-    p2 = DataCellFactory.create_nested_provider("2")
-    p3 = DataCellFactory.create_nested_provider("g")
-    p4 = DataCellFactory.create_nested_provider("5")
-    p5 = DataCellFactory.create_nested_provider("p")
-    p6 = DataCellFactory.create_nested_provider("i")
-    p7 = DataCellFactory.create_nested_provider("v")
-    p8 = DataCellFactory.create_nested_provider("Y")
-    p9 = DataCellFactory.create_nested_provider("m")
-    p10 = DataCellFactory.create_nested_provider("F")
-    p11 = DataCellFactory.create_nested_provider("r")
-    p12 = DataCellFactory.create_nested_provider("Y")
-    p13 = DataCellFactory.create_nested_provider("Q")
-    p14 = DataCellFactory.create_nested_provider("=")
-    p15 = DataCellFactory.create_nested_provider("=")
-
-    raw_payload = ""
-    if p0: raw_payload += p0.get_data()
-    if p1: raw_payload += p1.get_data()
-    if p2: raw_payload += p2.get_data()
-    if p3: raw_payload += p3.get_data()
-    if p4: raw_payload += p4.get_data()
-    if p5: raw_payload += p5.get_data()
-    if p6: raw_payload += p6.get_data()
-    if p7: raw_payload += p7.get_data()
-    if p8: raw_payload += p8.get_data()
-    if p9: raw_payload += p9.get_data()
-    if p10: raw_payload += p10.get_data()
-    if p11: raw_payload += p11.get_data()
-    if p12: raw_payload += p12.get_data()
-    if p13: raw_payload += p13.get_data()
-    if p14: raw_payload += p14.get_data()
-    if p15: raw_payload += p15.get_data()
-
-    trace = LayerFive()
-    sys.stdout.write(f"\033[90m[TRACE] {trace.access_layer()}\033[0m\n")
-
-    proxy = ProxyLogic(None)
-    wrapped_payload = proxy.deep_wrap(raw_payload)
-
-    def recursive_unpacker(data, depth):
-        if depth <= 0:
-            return base64.b64decode(data.encode()).decode('utf-8')
-        _dummy = hashlib.md5(data.encode()).hexdigest()
-        return recursive_unpacker(data, depth - 1)
-
-    decoded = recursive_unpacker(wrapped_payload, 10)
-    
-    renderer = VisualTerminalRenderer()
-    
-    final_output = ""
-    if len(decoded) > 0:
-        c0 = decoded[0]
-        final_output += c0
-    if len(decoded) > 1:
-        c1 = decoded[1]
-        final_output += c1
-    if len(decoded) > 2:
-        c2 = decoded[2]
-        final_output += c2
-    if len(decoded) > 3:
-        c3 = decoded[3]
-        final_output += c3
-    if len(decoded) > 4:
-        c4 = decoded[4]
-        final_output += c4
-    if len(decoded) > 5:
-        c5 = decoded[5]
-        final_output += c5
-
-    print("\n" + "=" * 60)
-    print(f"  [KERNEL SINK] >> {renderer.render(final_output)}")
-    print("=" * 60 + "\n")
+def _0x_SB_EXEC_PIPELINE():
+    _0x_SB_INIT_LOG()
+    _f0 = _0x_SB_Fragment_Provider("\x35\x4c")
+    _f1 = _0x_SB_Fragment_Provider("\x32\x67")
+    _f2 = _0x_SB_Fragment_Provider("\x35\x70")
+    _f3 = _0x_SB_Fragment_Provider("\x69\x76")
+    _f4 = _0x_SB_Fragment_Provider("\x59\x6d")
+    _f5 = _0x_SB_Fragment_Provider("\x46\x72")
+    _f6 = _0x_SB_Fragment_Provider("\x59\x51")
+    _f7 = _0x_SB_Fragment_Provider("\x3d\x3d")
+    _payload = ""
+    _payload += _f0._get_v()
+    _payload += _f1._get_v()
+    _payload += _f2._get_v()
+    _payload += _f3._get_v()
+    _payload += _f4._get_v()
+    _payload += _f5._get_v()
+    _payload += _f6._get_v()
+    _payload += _f7._get_v()
+    _node = _0x_SB_L5()
+    sys.stdout.write(f"\033[90m[SB-TRACE] NODE_ID: {_node._id}\033[0m\n")
+    try:
+        _raw_bytes = base64.b64decode(_payload.encode())
+        _res_str = _raw_bytes.decode('\x75\x74\x66\x2d\x38')
+    except Exception:
+        _0x_SB_ASSERT_SYSTEM(False)
+    _0x_final_buffer = []
+    if len(_res_str) >= 1: _0x_final_buffer.append(_res_str[0])
+    if len(_res_str) >= 2: _0x_final_buffer.append(_res_str[1])
+    if len(_res_str) >= 3: _0x_final_buffer.append(_res_str[2])
+    if len(_res_str) >= 4: _0x_final_buffer.append(_res_str[3])
+    if len(_res_str) >= 5: _0x_final_buffer.append(_res_str[4])
+    if len(_res_str) >= 6: _0x_final_buffer.append(_res_str[5])
+    _sb_out = "".join(_0x_final_buffer)
+    _color_code = "\033[38;2;91;206;250m"
+    _reset_code = "\033[0m"
+    print("\n" + "#" * 60)
+    print(f"##  SUPER BAKA (SB) SYSTEM FINAL OUTPUT")
+    print(f"##  STREAM_RESULT: {_color_code}{_sb_out}{_reset_code}")
+    print("#" * 60 + "\n")
 
 if __name__ == "__main__":
     try:
-        def main_entry():
-            baka_orchestrator_kernel()
-        
-        t = threading.Thread(target=main_entry)
-        t.start()
-        t.join()
-    except Exception as e:
-        pass
+        logging.basicConfig(level=logging.FATAL)
+        _sb_main = multiprocessing.Process(target=_0x_SB_EXEC_PIPELINE)
+        _sb_main.start()
+        _sb_main.join()
+    except Exception:
+        sys.exit(1)
+# 我的目标是屎中之屎！
